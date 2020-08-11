@@ -18,7 +18,7 @@ class TinderBot():
 
         button_close_1 = self.driver.find_element_by_xpath('//*[@id="content"]/div/div[2]/div/div/div[2]/button')
         button_close_1.click()
-        time.sleep(5)
+        time.sleep(8)
         button_close_2 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div[3]/div[2]/button')
         button_close_2.click()
         time.sleep(3)
@@ -53,11 +53,10 @@ class TinderBot():
 
         time.sleep(5)
 
-
     def alert_off(self):
         new_window = self.driver.window_handles[0]
         self.driver.switch_to_window(new_window)
-        time.sleep(4)
+        time.sleep(6)
 
         button_3 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
         button_3.click()
@@ -66,7 +65,6 @@ class TinderBot():
 
         button_4 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
         button_4.click()
-
 
     def like(self):
         button_like = self.driver.find_element_by_css_selector('#content > div > div.App__body.H\(100\%\).Pos\(r\).Z\(0\) > div > main > div.H\(100\%\) > div > div > div.recsCardboard.W\(100\%\).Mt\(a\).H\(100\%\)--s.Px\(10px\)--s.Pos\(r\) > div > div.Pos\(r\).Py\(16px\).Px\(4px\).Px\(8px\)--ml.D\(f\).Jc\(sb\).Ai\(c\).Maw\(375px\)--m.Mx\(a\).Pe\(n\).Mt\(-1px\) > div:nth-child(4)')
@@ -81,11 +79,21 @@ class TinderBot():
                     link = self.driver.find_element_by_css_selector("#modal-manager > div > div > div > div > div.Pos\(r\).W\(100\%\) > a")
                     link.click()
                 except:
-                    print('sss')
+                    continue
+
+                try:
+                        cansel = self.driver.find_element_by_xpath("//*[@id='modal-manager']/div/div/div[2]/button[2]")
+                        cansel.click()
+                except:
+                        continue
             except:
                 print("Получен лайк")
                 time.sleep(3.4)
                 try:
+                    message_sended = self.driver.find_element_by_css_selector("#chat-text-area")
+                    message_sended.send_keys(randomise())
+                    button_sended = self.driver.find_element_by_xpath("//*[@id='modal-manager-canvas']/div/div/div[1]/div/div[3]/div[3]/form/button")
+                    button_sended.click()
                     linck = self.driver.find_element_by_css_selector("#modal-manager-canvas > div > div > div.M\(a\).Expand.Pos\(r\).Flx\(\$flx1\).Pb\(36px\)--ml.Maw\(375px\)--ml.Mah\(620px\)--ml > div > div.Pos\(r\).W\(100\%\) > a")
                     linck.click()
                 except:
